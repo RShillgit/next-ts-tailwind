@@ -1,5 +1,3 @@
-"use client"
-
 import { TodoItem } from "@/components/TodoItem";
 import { deleteTodo, getTodos, toggleTodo } from "@/serverCode";
 import Link from "next/link"
@@ -7,7 +5,7 @@ import Link from "next/link"
 export default async function Home() {
 
   // Fetch todos from DB
-  let todos = await getTodos();
+  const todos = await getTodos();
 
   return (
     <>
@@ -22,11 +20,9 @@ export default async function Home() {
 
       <ul className="pl-4">
 
-        {todos && (
-          todos.map(todo => {
-            return (<TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>)
-          })
-        )}
+        {todos.map(todo => {
+          return (<TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>)
+        })}
 
       </ul>
     </>
